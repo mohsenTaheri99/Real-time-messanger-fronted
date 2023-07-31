@@ -1,0 +1,35 @@
+:root {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.87);
+}
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.091);
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #129900;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
