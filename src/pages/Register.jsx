@@ -25,7 +25,7 @@ function Register() {
     confirmPasswordErr,
   } = useValidatePasswordAndConfirmPassword();
   const { register, registerLoading, data, registerErr } = useRegister(
-    "http://localhost:9999"
+    "https://messanger.iran.liara.run"
   );
   const history = useNavigate();
 

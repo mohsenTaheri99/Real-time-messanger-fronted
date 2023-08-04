@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function useWebsocket(token, url) {
   const [refresh, setRefresh] = useState(false);
-  const [online, setOnline] = useState(false);
+  const [online, setOnline] = useState();
   const [inbox, setInbox] = useState([]);
   const [chat, setChat] = useState();
   const [chats, setChats] = useState({});
@@ -19,7 +19,7 @@ export default function useWebsocket(token, url) {
 
   useEffect(() => {
     if (!token) return;
-    ws.current = new WebSocket(`ws://${url}`);
+    ws.current = new WebSocket(`wss://${url}`);
     ws.current.onopen = (event) => {
       const payload = {
         method: "addMe",

@@ -11,6 +11,9 @@ function Messages({ chat, username, startDate }) {
   useEffect(() => {
     scrollToBottom();
   }, [chat?.length]);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView();
+  }, [chat]);
   return (
     <>
       <MessagesContainer>
@@ -29,7 +32,7 @@ function Messages({ chat, username, startDate }) {
           >
             {startDate.split("T")[1].split(".")[0]}
           </Message>
-          {chat.map((e) => (
+          {chat.map((e, index) => (
             <Message
               key={e.date}
               style={{
@@ -37,7 +40,12 @@ function Messages({ chat, username, startDate }) {
               }}
               className={e.sender === username ? "you" : "me"}
             >
-              <p className={e.sender === username ? "you" : "me"}>
+              <p
+                className={
+                  (e.sender === username ? "you" : "me") +
+                  (true ? " fade-in" : "")
+                }
+              >
                 {e.message}
               </p>
             </Message>
@@ -60,8 +68,11 @@ export default Messages;
 
 const fadeIn = keyframes`
 0%{
-  scale:0;
+  scale:0.5;
 }
+/* 80%{
+  scale:1.1;
+} */
 100%{
   scale:1;
 }
@@ -83,15 +94,16 @@ const Message = styled.div`
   display: flex;
   position: relative;
   p {
-    animation: ${fadeIn} 0.2s ease-in;
     font-size: 18px;
-
     padding: 5px 15px;
     border-radius: 10px;
     width: fit-content;
     max-width: 300px;
     background: ${({ theme }) => theme.color.complementaryTwo};
     color: ${({ theme }) => theme.color.text};
+  }
+  .fade-in {
+    animation: ${fadeIn} 0.2s ease-in-out;
   }
   .me::after {
     content: "";

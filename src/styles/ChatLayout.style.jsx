@@ -14,16 +14,22 @@ const fadeIn = keyframes`
 export const MainContainer = styled.div`
   width: 100%;
   max-width: 1500px;
-  height: 100vh;
+  height: 100%;
   display: grid;
   grid-template-columns: 240px 1fr;
   grid-template-rows: auto;
+  position: relative;
+  overflow: hidden;
   gap: 10px;
   padding: 10px;
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 `;
 export const ChatContainer = styled.div`
+  display: ${(props) =>
+    props.isSmileScreen && props.showContact ? "none" : "unset"};
   opacity: 0;
-
   background: ${({ theme }) => theme.color.complementaryOne};
   border-radius: 10px;
   animation: ${fadeIn} 0.4s forwards;
@@ -36,4 +42,6 @@ export const SideBar = styled.div`
   border-radius: 10px;
   overflow: hidden;
   animation: ${fadeIn} 0.4s forwards;
+  display: ${(props) =>
+    props.isSmileScreen && !props.showContact ? "none" : "unset"};
 `;

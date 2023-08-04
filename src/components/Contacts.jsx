@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { BiSolidMessageAdd } from "react-icons/bi";
 
 function Contacts({
+  setShowContact,
+  online,
   inbox,
   myUsername,
   getMessage,
   setShowCreateChat,
   onlineUsers,
 }) {
-  console.log(inbox);
   return (
     <ContactContainer>
       <NoContact style={{ display: inbox.length === 0 ? "flex" : "none" }}>
@@ -18,7 +19,18 @@ function Contacts({
       </NoContact>
       {inbox.map((i) => {
         return (
-          <Contact key={i._id} onClick={() => getMessage(i.chats)}>
+          <Contact
+            className={online ? "" : "disabled"}
+            key={i._id}
+            onClick={() => {
+              if (online) {
+                getMessage(i.chats);
+                setShowContact(false);
+              } else {
+                1;
+              }
+            }}
+          >
             <span>
               {
                 i.contactNames.filter((u) =>
@@ -61,6 +73,9 @@ const ContactContainer = styled.div`
   margin-top: 10px;
   overflow-y: scroll;
   overflow-x: hidden;
+  .disabled:active {
+    color: #ff7272;
+  }
 `;
 const Contact = styled.div`
   padding: 10px;

@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const AppC = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;

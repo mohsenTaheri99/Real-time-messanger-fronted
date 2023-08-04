@@ -9,7 +9,7 @@ export default function useValidatePasswordAndConfirmPassword() {
   useEffect(() => {
     setPasswordErr("");
     setConfirmPasswordErr("");
-    if (password !== confirmPassword && confirmPassword.length !== 0)
+    if (password !== confirmPassword && password.length !== 0)
       setConfirmPasswordErr("Password and confirm password does not match");
     if (password.length <= 4 && password.length !== 0)
       setPasswordErr("Password must be at least 5 characters ");

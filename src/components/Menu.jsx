@@ -86,7 +86,7 @@ const Picture = styled.div`
   align-items: center;
   justify-content: center;
   svg {
-    color: ${({ theme }) => theme.color.bg};
+    color: ${({ theme }) => theme.color.text};
   }
 `;
 const Name = styled.div`

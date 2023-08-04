@@ -8,6 +8,7 @@ function CreateNewChat({
   searchUsers,
   SearchInUsers,
   StartNewChat,
+  setShowContact,
 }) {
   const [searchInput, setSearchInput] = useState("");
   const [message, setMessage] = useState("");
@@ -47,6 +48,7 @@ function CreateNewChat({
                 setSearchInput("");
                 StartNewChat(i._id);
                 setShowCreateChat((e) => false);
+                setShowContact(false);
               }}
             >
               <span>{i.username}</span>

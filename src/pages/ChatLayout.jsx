@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Chat from "../components/Chat";
 import { Navigate } from "react-router-dom";
 
@@ -14,8 +14,23 @@ import useWebsocket from "../hook/useWebSocket";
 import Cookies from "js-cookie";
 import WelcomePage from "../components/WelcomePage";
 import CreateNewChat from "../components/CreateNewChat";
+import MessagePopUp from "../components/MessagePopUp";
+import useScreenSize from "../hook/useScreenSize";
 
 function ChatLayout() {
+  const screenSize = useScreenSize();
+  const [isSmileScreen, setIsSmileScreen] = useState(false);
+  const [showContact, setShowContact] = useState(true);
+
+  useEffect(() => {
+    console.log(screenSize.width);
+    if (screenSize.width <= 700) {
+      setIsSmileScreen(true);
+    } else {
+      setIsSmileScreen(false);
+    }
+  }, [screenSize]);
+
   const token = Cookies.get("token");
   if (!token) return <Navigate to="/login" replace={true} />;
   const {
@@ -31,25 +46,32 @@ function ChatLayout() {
     imTyping,
     isTyping,
     onlineUsers,
-  } = useWebsocket(token, "localhost:9090");
+    setRefresh,
+  } = useWebsocket(token, "ws-messanger.iran.liara.run");
   const [HamburgerMenuShow, SetHamburgerMenuShow] = useState(false);
   const [showWelcomePage, setShowWelcomePage] = useState(true);
   const [showCreateChat, setShowCreateChat] = useState(false);
 
   if (showWelcomePage)
     return (
-      <WelcomePage setShowWelcomePage={setShowWelcomePage} inbox={inbox} />
+      <WelcomePage
+        setShowWelcomePage={setShowWelcomePage}
+        online={online}
+        setRefresh={setRefresh}
+      />
     );
   return (
     <MainContainer>
-      <SideBar>
+      <SideBar isSmileScreen={isSmileScreen} showContact={showContact}>
         <SearchBox SetHamburgerMenuShow={SetHamburgerMenuShow} />
         <Contacts
+          setShowContact={setShowContact}
           onlineUsers={onlineUsers}
           inbox={inbox}
           myUsername={myUsername}
           getMessage={getMessage}
           setShowCreateChat={setShowCreateChat}
+          online={online}
         />
         <Menu
           myUsername={myUsername}
@@ -57,6 +79,7 @@ function ChatLayout() {
           HamburgerMenuShow={HamburgerMenuShow}
         />
         <CreateNewChat
+          setShowContact={setShowContact}
           searchUsers={searchUsers}
           showCreateChat={showCreateChat}
           setShowCreateChat={setShowCreateChat}
@@ -64,8 +87,10 @@ function ChatLayout() {
           StartNewChat={StartNewChat}
         />
       </SideBar>
-      <ChatContainer>
+      <ChatContainer isSmileScreen={isSmileScreen} showContact={showContact}>
         <Chat
+          isSmileScreen={isSmileScreen}
+          setShowContact={setShowContact}
           onlineUsers={onlineUsers}
           chat={chat}
           myUsername={myUsername}
@@ -74,6 +99,7 @@ function ChatLayout() {
           isTyping={isTyping}
         />
       </ChatContainer>
+      <MessagePopUp online={online} setRefresh={setRefresh} />
     </MainContainer>
   );
 }

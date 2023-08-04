@@ -13,6 +13,8 @@ function Chat({
   imTyping,
   isTyping,
   onlineUsers,
+  isSmileScreen,
+  setShowContact,
 }) {
   console.log(chat);
   if (!chat) return <EmptyChat myUsername={myUsername} />;
@@ -21,6 +23,8 @@ function Chat({
   return (
     <MainContainer>
       <ChatHeader
+        isSmileScreen={isSmileScreen}
+        setShowContact={setShowContact}
         onlineUsers={onlineUsers}
         chatId={chat._id}
         isTyping={isTyping}
