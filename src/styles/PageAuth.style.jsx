@@ -12,7 +12,6 @@ export const AuthContainer = styled.div`
   border-radius: 10px;
   h2 {
     padding: 10px;
-
     width: 400px;
     text-align: start;
   }
@@ -20,6 +19,22 @@ export const AuthContainer = styled.div`
     padding: 10px;
     width: 400px;
     text-align: start;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  @media (max-width: 500px) {
+    h1,
+    h2 {
+      width: 300px;
+      font-size: 30px;
+    }
+    h2 {
+      font-size: 25px;
+    }
   }
 `;
 
@@ -51,6 +66,10 @@ export const Form = styled.form`
     padding: 5px;
     color: #ff7272;
     display: block;
+  }
+
+  @media (max-width: 500px) {
+    width: 300px;
   }
 `;
 export const InputBox = styled.div`

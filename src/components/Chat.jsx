@@ -52,7 +52,7 @@ export default Chat;
 const MainContainer = styled.div`
   width: 100%;
   position: relative;
-  height: calc(100vh - 20px);
+  height: calc(100svh - 20px);
   padding: 10px;
   display: flex;
   flex-direction: column;

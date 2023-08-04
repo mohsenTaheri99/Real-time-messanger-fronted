@@ -83,6 +83,10 @@ const MessagesContainer = styled.div`
   margin-top: 10px;
   width: calc(100% - 30px);
   height: calc(100% - 180px);
+  @media (max-width: 500px) {
+    width: calc(100%);
+    height: calc(100% - 150px);
+  }
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 0px 20px;
@@ -101,6 +105,9 @@ const Message = styled.div`
     max-width: 300px;
     background: ${({ theme }) => theme.color.complementaryTwo};
     color: ${({ theme }) => theme.color.text};
+    @media (max-width: 500px) {
+      font-size: 15px;
+    }
   }
   .fade-in {
     animation: ${fadeIn} 0.2s ease-in-out;

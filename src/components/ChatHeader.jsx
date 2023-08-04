@@ -54,6 +54,9 @@ const Header = styled.div`
 const Name = styled.div`
   font-size: 1.5em;
   color: ${({ theme }) => theme.color.text};
+  @media (max-width: 500px) {
+    font-size: 1.4em;
+  }
 `;
 const IsTyping = styled.div`
   width: 30px;

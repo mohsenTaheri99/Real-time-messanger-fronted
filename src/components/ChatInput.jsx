@@ -43,6 +43,10 @@ const ChatInputForm = styled.form`
 const SendButton = styled.button`
   width: 50px;
   height: 50px;
+  @media (max-width: 500px) {
+    height: 40px;
+    width: 40px;
+  }
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -62,14 +66,21 @@ const InputContainer = styled.div`
   border-radius: 20px;
   margin-right: 15px;
   border: solid 1px ${({ theme }) => theme.color.text + "90"};
-
   background: ${({ theme }) => theme.color.complementaryTwo};
+
+  @media (max-width: 500px) {
+    height: 40px;
+  }
+
   input {
     height: 100%;
     width: 100%;
     background: transparent;
     color: ${({ theme }) => theme.color.text};
     font-size: 18px;
+    @media (max-width: 500px) {
+      font-size: 15px;
+    }
   }
   input::placeholder {
     color: ${({ theme }) => theme.color.text + "90"};
